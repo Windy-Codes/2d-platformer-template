@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://bw4f5kmt8lov5"]
+[gd_scene format=4 uid="uid://bw4f5kmt8lov5"]
 
 [ext_resource type="Texture2D" uid="uid://b5k0r5b28nrx3" path="res://Template/Assets/Sprites/Level_Sprit/Terrain (16x16).png" id="1_8s4dt"]
+[ext_resource type="PackedScene" uid="uid://jdqmnhjdcc8r" path="res://Template/Scenes/Player/player.tscn" id="2_pgdos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgdos"]
 texture = ExtResource("1_8s4dt")
@@ -17,18 +18,23 @@ texture = ExtResource("1_8s4dt")
 6:0/0/terrain = 0
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:0/0/terrains_peering_bit/right_side = 0
+6:0/0/terrains_peering_bit/bottom_right_corner = 0
 6:0/0/terrains_peering_bit/bottom_side = 0
 7:0/0 = 0
 7:0/0/terrain_set = 0
 7:0/0/terrain = 0
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0/terrains_peering_bit/right_side = 0
+7:0/0/terrains_peering_bit/bottom_right_corner = 0
+7:0/0/terrains_peering_bit/bottom_side = 0
+7:0/0/terrains_peering_bit/bottom_left_corner = 0
 7:0/0/terrains_peering_bit/left_side = 0
 8:0/0 = 0
 8:0/0/terrain_set = 0
 8:0/0/terrain = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0/terrains_peering_bit/bottom_side = 0
+8:0/0/terrains_peering_bit/bottom_left_corner = 0
 8:0/0/terrains_peering_bit/left_side = 0
 9:0/0 = 0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -59,16 +65,31 @@ texture = ExtResource("1_8s4dt")
 6:1/0/terrain_set = 0
 6:1/0/terrain = 0
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0/terrains_peering_bit/right_side = 0
+6:1/0/terrains_peering_bit/bottom_right_corner = 0
 6:1/0/terrains_peering_bit/bottom_side = 0
 6:1/0/terrains_peering_bit/top_side = 0
+6:1/0/terrains_peering_bit/top_right_corner = 0
 7:1/0 = 0
 7:1/0/terrain_set = 0
+7:1/0/terrain = 0
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0/terrains_peering_bit/right_side = 0
+7:1/0/terrains_peering_bit/bottom_right_corner = 0
+7:1/0/terrains_peering_bit/bottom_side = 0
+7:1/0/terrains_peering_bit/bottom_left_corner = 0
+7:1/0/terrains_peering_bit/left_side = 0
+7:1/0/terrains_peering_bit/top_left_corner = 0
+7:1/0/terrains_peering_bit/top_side = 0
+7:1/0/terrains_peering_bit/top_right_corner = 0
 8:1/0 = 0
 8:1/0/terrain_set = 0
 8:1/0/terrain = 0
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0/terrains_peering_bit/bottom_side = 0
+8:1/0/terrains_peering_bit/bottom_left_corner = 0
+8:1/0/terrains_peering_bit/left_side = 0
+8:1/0/terrains_peering_bit/top_left_corner = 0
 8:1/0/terrains_peering_bit/top_side = 0
 9:1/0 = 0
 9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -100,17 +121,22 @@ texture = ExtResource("1_8s4dt")
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:2/0/terrains_peering_bit/right_side = 0
 6:2/0/terrains_peering_bit/top_side = 0
+6:2/0/terrains_peering_bit/top_right_corner = 0
 7:2/0 = 0
 7:2/0/terrain_set = 0
 7:2/0/terrain = 0
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:2/0/terrains_peering_bit/right_side = 0
 7:2/0/terrains_peering_bit/left_side = 0
+7:2/0/terrains_peering_bit/top_left_corner = 0
+7:2/0/terrains_peering_bit/top_side = 0
+7:2/0/terrains_peering_bit/top_right_corner = 0
 8:2/0 = 0
 8:2/0/terrain_set = 0
 8:2/0/terrain = 0
 8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:2/0/terrains_peering_bit/left_side = 0
+8:2/0/terrains_peering_bit/top_left_corner = 0
 8:2/0/terrains_peering_bit/top_side = 0
 13:2/0 = 0
 13:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -305,4 +331,11 @@ sources/0 = SubResource("TileSetAtlasSource_pgdos")
 [node name="Debug_lvl" type="Node2D" unique_id=1126803880]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=843554088]
+tile_map_data = PackedByteArray("AAABAAAAAAAHAAIAAAACAAAAAAAHAAIAAAADAAAAAAAHAAIAAAAEAAAAAAAHAAIAAAAFAAAAAAAHAAIAAAAGAAAAAAAHAAIAAAAHAAAAAAAHAAIAAAAIAAAAAAAHAAIAAAAJAAAAAAAHAAIAAAAKAAAAAAAHAAIAAAALAAAAAAAHAAIAAAAMAAAAAAAHAAIAAAANAAAAAAAHAAIAAAAOAAAAAAAHAAIAAAAPAAAAAAAHAAIAAAAQAP//AAAHAAEAAAAPAP//AAAHAAEAAAAOAP//AAAHAAEAAAANAP//AAAHAAAAAAAMAP//AAAHAAAAAAALAP//AAAHAAAAAAAKAP//AAAHAAAAAAAJAP//AAAHAAAAAAAIAP//AAAHAAAAAAAHAP//AAAHAAAAAAAGAP//AAAHAAAAAAAFAP//AAAHAAAAAAAEAP//AAAHAAAAAAADAP//AAAHAAAAAAACAP//AAAHAAAAAAABAP//AAAHAAAAAAAAAP//AAAHAAAAAAAAAAAAAAAHAAIAAAAQAAAAAAAHAAIAAAAQAP7/AAAHAAEAAAAQAP3/AAAHAAEAAAAQAPz/AAAGAAEAAAAQAPv/AAAGAAAAAAAPAP7/AAAHAAEAAAAPAP3/AAAHAAAAAAAOAP7/AAAGAAEAAAAOAP3/AAAGAAAAAAAUAP3/AAAIAAEAAAAUAPz/AAAIAAEAAAAUAPv/AAAIAAAAAAATAP3/AAAHAAEAAAATAPz/AAAHAAEAAAATAPv/AAAHAAAAAAASAP3/AAAHAAEAAAASAPz/AAAHAAEAAAASAPv/AAAHAAAAAAARAP3/AAAHAAEAAAARAPz/AAAHAAEAAAARAPv/AAAHAAAAAAD//wAAAAAHAAIAAAD/////AAAHAAAAAAD+/wAAAAAHAAIAAAD+////AAAHAAAAAAD9/wAAAAAHAAIAAAD9////AAAHAAAAAAD8/wAAAAAHAAIAAAD8////AAAHAAAAAAD7/wAAAAAHAAIAAAD7////AAAHAAAAAAD6/wAAAAAHAAIAAAD6////AAAHAAAAAAD5/wAAAAAHAAIAAAD5////AAAHAAAAAAD4/wAAAAAHAAIAAAD4////AAAHAAAAAAD3/wAAAAAHAAIAAAD3////AAAHAAAAAAD2/wAAAAAHAAIAAAD2////AAAHAAAAAAD1/wAAAAAHAAIAAAD1////AAAHAAEAAAD0/wAAAAAHAAIAAAD0////AAAHAAEAAADz/wAAAAAHAAIAAADz////AAAHAAEAAADy/wAAAAAHAAIAAADy////AAAHAAEAAADx/wAAAAAHAAIAAADx////AAAHAAEAAADw/wAAAAAHAAIAAADw////AAAHAAEAAADv/wAAAAAGAAIAAADv////AAAGAAEAAAD1//7/AAAIAAAAAAD0//7/AAAHAAAAAADz//7/AAAHAAEAAADz//3/AAAIAAAAAADy//7/AAAHAAEAAADy//3/AAAHAAEAAADy//z/AAAIAAAAAADx//7/AAAHAAEAAADx//3/AAAHAAEAAADx//z/AAAHAAEAAADx//v/AAAIAAAAAADw//7/AAAHAAEAAADw//3/AAAHAAEAAADw//z/AAAHAAEAAADw//v/AAAHAAAAAADv//7/AAAGAAEAAADv//3/AAAGAAEAAADv//z/AAAGAAEAAADv//v/AAAGAAAAAAAUAAAAAAAIAAIAAAAUAP//AAAIAAEAAAAUAP7/AAAIAAEAAAATAAAAAAAHAAIAAAATAP//AAAHAAEAAAATAP7/AAAHAAEAAAASAAAAAAAHAAIAAAASAP//AAAHAAEAAAASAP7/AAAHAAEAAAARAAAAAAAHAAIAAAARAP//AAAHAAEAAAARAP7/AAAHAAEAAAA=")
 tile_set = SubResource("TileSet_61p3b")
+
+[node name="Player" parent="." unique_id=1771678370 instance=ExtResource("2_pgdos")]
+position = Vector2(0, -34)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1596586257]
+zoom = Vector2(0.48, 0.48)

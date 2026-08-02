@@ -1,45 +1,93 @@
 extends CharacterBody2D
 
-var speed := 250.0
-var jump := 200.0
+@export var SPEED := 250.0
+@export var JUMP_VELOCITY := -350.0
 
-var is_Player_alive := true
+var is_alive := true
 
+var can_double_jump := true
+var coyote := false
+var was_on_floor := false
 
-
-
-
-
-func adding_grivity():
-
-    velocity = get_gravity()
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var coyote_time: Timer = $Coyote_Time
 
 
-# in this methoud we Control the movement of the player by Changing its velocity
-# which is a built-in valuse in the charaterbody2d node
-# we dosen't need to apply delta time when changing the values of velocity as it is built right into it 
+func _physics_process(delta):
 
-func Player_Movement():
-    
-    var direction = Input.get_axis("Move_left","Move_right") 
-
-    if direction:
-
-        velocity.x = speed * direction
-    
+	Movement()
+	Jump()
+	Grivity(delta)
 
 
 
-    if is_Player_alive:
+func Grivity(delta):
+	# Gravity
+	if !is_on_floor():
+		velocity += get_gravity() * delta
 
-        move_and_slide()
+
+func coyote_timer():
+	# Left the ground this frame
+	if was_on_floor and !is_on_floor():
+		coyote = true
+		coyote_time.start()
+
+	was_on_floor = is_on_floor()
 
 func Jump():
+	# Jump input
+	if Input.is_action_just_pressed("Jump"):
 
-    if is_on_floor() and Input.is_action_just_pressed("Jump"):
+		# Normal jump
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-        velocity.y -= jump
+		# Coyote jump
+		elif coyote:
+			velocity.y = JUMP_VELOCITY
+			coyote = false
 
-    
+		# Double jump
+		elif can_double_jump:
+			velocity.y = JUMP_VELOCITY
+			can_double_jump = false
+		
+	# Landing
+	if is_on_floor():
+		can_double_jump = true
+		coyote = false
+
+func Movement():
+	# Horizontal movement
+	var direction := Input.get_axis("Move_left", "Move_right")
+
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 
+	# Move the character
+	if is_alive:
+		move_and_slide()
+
+
+
+func Player_animations():
+
+	if !is_on_floor():
+		animated_sprite.play("Jump")
+	elif velocity.x != 0:
+		animated_sprite.play("runing")
+	else:
+		animated_sprite.play("idle")
+
+	if velocity.x > 0:
+		animated_sprite.flip_h = false
+	elif velocity.x < 0:
+		animated_sprite.flip_h = true
+
+
+func _on_coyote_time_timeout():
+	coyote = false

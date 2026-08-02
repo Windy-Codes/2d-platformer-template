@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jdqmnhjdcc8r"]
 
-[ext_resource type="Script" uid="uid://be1bckng4f14p" path="res://Template/Scenes/Player/player.gd" id="1_0u5uq"]
+[ext_resource type="Script" uid="uid://be5mxhu6fu237" path="res://Template/Scenes/Player/player.gd" id="1_0u5uq"]
 [ext_resource type="Texture2D" uid="uid://d0uy5qrilvsi1" path="res://Template/Assets/Sprites/Player/Ninja Frog/Double Jump (32x32).png" id="1_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://d4eaptht7kre0" path="res://Template/Assets/Sprites/Player/Ninja Frog/Hit (32x32).png" id="2_0u5uq"]
 [ext_resource type="Texture2D" uid="uid://uupx2gkmmyah" path="res://Template/Assets/Sprites/Player/Ninja Frog/Jump (32x32).png" id="3_jlvik"]
@@ -336,7 +336,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qamto"]
-size = Vector2(18, 22)
+size = Vector2(18, 21)
 
 [node name="Player" type="CharacterBody2D" unique_id=1771678370]
 script = ExtResource("1_0u5uq")
@@ -345,7 +345,14 @@ script = ExtResource("1_0u5uq")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_61p3b")
 animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580449662]
-position = Vector2(0, -11)
+position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_qamto")
+
+[node name="Coyote_Time" type="Timer" parent="." unique_id=995429257]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Coyote_Time" to="." method="_on_coyote_time_timeout"]
