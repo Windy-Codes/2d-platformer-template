@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c7b64x3l8vnrk"]
+
+[ext_resource type="Script" uid="uid://du4ncktijg2bp" path="res://Template/Scenes/Enemys/Bace_enemy/bace_enemy.gd" id="1_sept6"]
+[ext_resource type="Texture2D" uid="uid://c2e4rbx8hogjg" path="res://Template/Assets/Sprites/enemy's/bace_enemy/Blink (42x42).png" id="1_tdera"]
+[ext_resource type="Texture2D" uid="uid://deb6t2twjcisg" path="res://Template/Assets/Sprites/enemy's/bace_enemy/Idle.png" id="2_sept6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaxnw"]
+atlas = ExtResource("1_tdera")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjx2p"]
+atlas = ExtResource("1_tdera")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3fee"]
+atlas = ExtResource("1_tdera")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68oih"]
+atlas = ExtResource("1_tdera")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilel4"]
+atlas = ExtResource("2_sept6")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_61p3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qaxnw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjx2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3fee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68oih")
+}],
+"loop": 1,
+"name": &"blinking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilel4")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0exm"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61p3b"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qamto"]
+size = Vector2(1, 1)
+
+[node name="bace_Enemy" type="CharacterBody2D" unique_id=1952803521]
+script = ExtResource("1_sept6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=352688414]
+sprite_frames = SubResource("SpriteFrames_61p3b")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=771941583]
+shape = SubResource("RectangleShape2D_f0exm")
+
+[node name="Collision_checker" type="Node2D" parent="." unique_id=552618102]
+
+[node name="RayCast_left" type="RayCast2D" parent="Collision_checker" unique_id=153397818]
+target_position = Vector2(-16, 0)
+
+[node name="RayCast_right" type="RayCast2D" parent="Collision_checker" unique_id=974282180]
+target_position = Vector2(16, 0)
+
+[node name="Area_left" type="Area2D" parent="Collision_checker" unique_id=945109356]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_checker/Area_left" unique_id=1719575545]
+position = Vector2(-17, 23)
+shape = SubResource("RectangleShape2D_61p3b")
+
+[node name="Area_right" type="Area2D" parent="Collision_checker" unique_id=1599766284]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_checker/Area_right" unique_id=1343920779]
+position = Vector2(17, 23)
+shape = SubResource("RectangleShape2D_qamto")
+
+[connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
+[connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]

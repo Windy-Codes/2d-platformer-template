@@ -3,6 +3,10 @@ extends CharacterBody2D
 @export var SPEED := 250.0
 @export var JUMP_VELOCITY := -350.0
 
+@export_group("Peremeters")
+@export var Can_Double_Jump := true
+
+
 var is_alive := true
 
 var can_double_jump := true
@@ -18,6 +22,12 @@ func _physics_process(delta):
 	Movement()
 	Jump()
 	Grivity(delta)
+	coyote_timer()
+
+
+func _process(_delta: float) -> void:
+
+	Player_animations()
 
 
 
@@ -49,7 +59,7 @@ func Jump():
 			coyote = false
 
 		# Double jump
-		elif can_double_jump:
+		elif can_double_jump and Can_Double_Jump :
 			velocity.y = JUMP_VELOCITY
 			can_double_jump = false
 		
@@ -57,6 +67,8 @@ func Jump():
 	if is_on_floor():
 		can_double_jump = true
 		coyote = false
+
+
 
 func Movement():
 	# Horizontal movement

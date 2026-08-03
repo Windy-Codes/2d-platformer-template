@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://ctih1tmlateg2"]
+
+[ext_resource type="Texture2D" uid="uid://deb6t2twjcisg" path="res://Template/Assets/Sprites/enemy's/bace_enemy/Idle.png" id="1_iny84"]
+[ext_resource type="Script" uid="uid://pgiud8wd5go4" path="res://Template/Scenes/Enemys/Exploding/exploding_enemy.gd" id="1_s7b2l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7b2l"]
+atlas = ExtResource("1_iny84")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_61p3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7b2l")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0exm"]
+size = Vector2(30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iny84"]
+size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7b2l"]
+size = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0exm"]
+radius = 103.24728
+
+[sub_resource type="Gradient" id="Gradient_61p3b"]
+colors = PackedColorArray(0.67058825, 0, 0, 1, 1, 1, 1, 1)
+
+[node name="Exploding_enemy" type="CharacterBody2D" unique_id=1737796939]
+script = ExtResource("1_s7b2l")
+is_a_moving_enemy = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1814134906]
+modulate = Color(0.493657, 0.1788258, 0.72080284, 1)
+sprite_frames = SubResource("SpriteFrames_61p3b")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=201814239]
+visible = false
+shape = SubResource("RectangleShape2D_f0exm")
+
+[node name="Collision_checker" type="Node2D" parent="." unique_id=91531946]
+visible = false
+
+[node name="RayCast_left" type="RayCast2D" parent="Collision_checker" unique_id=572774947]
+target_position = Vector2(-16, 0)
+
+[node name="RayCast_right" type="RayCast2D" parent="Collision_checker" unique_id=223995095]
+target_position = Vector2(16, 0)
+
+[node name="Area_left" type="Area2D" parent="Collision_checker" unique_id=655312942]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_checker/Area_left" unique_id=119986928]
+position = Vector2(-17, 23)
+shape = SubResource("RectangleShape2D_iny84")
+
+[node name="Area_right" type="Area2D" parent="Collision_checker" unique_id=1200014734]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision_checker/Area_right" unique_id=208737429]
+position = Vector2(17, 23)
+shape = SubResource("RectangleShape2D_s7b2l")
+
+[node name="Explodo" type="Node2D" parent="." unique_id=1355893731]
+visible = false
+position = Vector2(-36, -3)
+
+[node name="expotion_area" type="Area2D" parent="Explodo" unique_id=1379885688]
+position = Vector2(36, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explodo/expotion_area" unique_id=1625465361]
+shape = SubResource("CircleShape2D_f0exm")
+
+[node name="Explotion_pirticles" type="CPUParticles2D" parent="." unique_id=855264029]
+emitting = false
+amount = 200
+lifetime = 0.66
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 150.95
+scale_amount_min = 4.0
+scale_amount_max = 7.28
+color = Color(0.9416999, 0.8121339, 0.25185278, 1)
+color_initial_ramp = SubResource("Gradient_61p3b")
+
+[connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
+[connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]
+[connection signal="body_entered" from="Explodo/expotion_area" to="." method="_on_area_2d_body_entered"]
