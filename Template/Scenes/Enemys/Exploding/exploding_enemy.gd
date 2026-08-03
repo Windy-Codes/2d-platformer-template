@@ -12,15 +12,15 @@ var direction := 1
 @onready var ray_cast_right: RayCast2D = $Collision_checker/RayCast_right
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var expotion_area: Area2D = $Explodo/expotion_area
-
+@onready var explotion_pirticles: CPUParticles2D = $Explotion_pirticles
 
 
 func _physics_process(_delta: float) -> void:
-    Movement()
+	Movement()
 
 func _process(_delta: float) -> void:
 
-    Ray_collision()
+	Ray_collision()
 
 
 
@@ -28,29 +28,31 @@ func _process(_delta: float) -> void:
 
 func Movement():
 
-    if is_a_moving_enemy:
-        velocity.x = SPEED * direction
+	if is_a_moving_enemy:
+		velocity.x = SPEED * direction
 
 
-    move_and_slide()
+	move_and_slide()
 
 func Ray_collision():
 
-        if ray_cast_left.is_colliding():
+		if ray_cast_left.is_colliding():
 
-            direction = 1
-        if ray_cast_right.is_colliding():
+			direction = 1
+		if ray_cast_right.is_colliding():
 
-            direction = -1
+			direction = -1
 
 
 
 func Explotion():
-    
-    expotion_area.queue_free()
-    animated_sprite.modulate = Color.RED
-    await get_tree().create_timer(explotion_timer).timeout
-    call_deferred("queue_free")
+	
+	expotion_area.queue_free()
+	animated_sprite.modulate = Color.RED
+	await get_tree().create_timer(explotion_timer).timeout
+	animated_sprite.visible = false
+	explotion_pirticles.emitting = true
+
 
 
 
@@ -58,18 +60,17 @@ func Explotion():
 
 
 func _on_area_right_body_exited(_body: Node2D):
-    direction = -1
-    
+	direction = -1
+	
 
 func _on_area_left_body_exited(_body: Node2D):
-    direction = 1
-    
+	direction = 1
+	
 
 
 
 func _on_area_2d_body_entered(body: Node2D):
-    
-    if body.is_in_group("Player"):
-        
-        Explotion()
-
+	
+	if body.is_in_group("Player"):
+		
+		Explotion()

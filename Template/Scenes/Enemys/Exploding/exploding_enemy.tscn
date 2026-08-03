@@ -30,6 +30,10 @@ size = Vector2(1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_f0exm"]
 radius = 103.24728
 
+[sub_resource type="Curve" id="Curve_s7b2l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4557377, 0.56896544), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_61p3b"]
 colors = PackedColorArray(0.67058825, 0, 0, 1, 1, 1, 1, 1)
 
@@ -68,7 +72,6 @@ position = Vector2(17, 23)
 shape = SubResource("RectangleShape2D_s7b2l")
 
 [node name="Explodo" type="Node2D" parent="." unique_id=1355893731]
-visible = false
 position = Vector2(-36, -3)
 
 [node name="expotion_area" type="Area2D" parent="Explodo" unique_id=1379885688]
@@ -80,14 +83,15 @@ shape = SubResource("CircleShape2D_f0exm")
 [node name="Explotion_pirticles" type="CPUParticles2D" parent="." unique_id=855264029]
 emitting = false
 amount = 200
-lifetime = 0.66
+lifetime = 0.5700000000000001
 one_shot = true
 explosiveness = 1.0
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_max = 150.95
-scale_amount_min = 4.0
-scale_amount_max = 7.28
+initial_velocity_max = 207.55
+radial_accel_max = 100.0
+scale_amount_max = 30.87
+scale_amount_curve = SubResource("Curve_s7b2l")
 color = Color(0.9416999, 0.8121339, 0.25185278, 1)
 color_initial_ramp = SubResource("Gradient_61p3b")
 

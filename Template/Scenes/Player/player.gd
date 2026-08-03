@@ -101,5 +101,11 @@ func Player_animations():
 		animated_sprite.flip_h = true
 
 
+func Death():
+	get_tree().reload_current_scene()
+
+
+
+
 func _on_coyote_time_timeout():
 	coyote = false
