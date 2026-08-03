@@ -53,13 +53,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0exm"]
-size = Vector2(30, 30)
+size = Vector2(22, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61p3b"]
 size = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qamto"]
 size = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgkws"]
+size = Vector2(30, 30)
 
 [node name="bace_Enemy" type="CharacterBody2D" unique_id=1952803521]
 script = ExtResource("1_sept6")
@@ -69,6 +72,7 @@ sprite_frames = SubResource("SpriteFrames_61p3b")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=771941583]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_f0exm")
 
 [node name="Collision_checker" type="Node2D" parent="." unique_id=552618102]
@@ -91,5 +95,12 @@ shape = SubResource("RectangleShape2D_61p3b")
 position = Vector2(17, 23)
 shape = SubResource("RectangleShape2D_qamto")
 
+[node name="Hit_box" type="Area2D" parent="." unique_id=1481237530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_box" unique_id=2122748025]
+shape = SubResource("RectangleShape2D_bgkws")
+debug_color = Color(0.70391214, 0.27224118, 1, 0.41960785)
+
 [connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
 [connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]
+[connection signal="body_entered" from="Hit_box" to="." method="_on_hit_box_body_entered"]

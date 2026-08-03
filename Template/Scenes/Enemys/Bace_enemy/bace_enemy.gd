@@ -13,11 +13,11 @@ var direction := 1
 
 
 func _physics_process(_delta: float) -> void:
-    Movement()
+	Movement()
 
 func _process(_delta: float) -> void:
 
-    Ray_collision()
+	Ray_collision()
 
 
 
@@ -25,28 +25,40 @@ func _process(_delta: float) -> void:
 
 func Movement():
 
-    if is_a_moving_enemy:
-        velocity.x = SPEED * direction
+	if is_a_moving_enemy:
+		velocity.x = SPEED * direction
 
 
-    move_and_slide()
+	move_and_slide()
+
+
 
 func Ray_collision():
 
-        if ray_cast_left.is_colliding():
+	var body_left = ray_cast_left.get_collider()
+	var body_right = ray_cast_right.get_collider()
 
-            direction = 1
-        if ray_cast_right.is_colliding():
+	if ray_cast_left.is_colliding() and !body_left.is_in_group("Player"):
 
-            direction = -1
+		direction = -1
+	if ray_cast_right.is_colliding() and !body_right.is_in_group("Player"):
+
+		direction = 1
 
 
 
 
 func _on_area_right_body_exited(_body: Node2D):
-    direction = -1
-    
+	direction = -1
+	
 
 func _on_area_left_body_exited(_body: Node2D):
-    direction = 1
-    
+	direction = 1
+	
+
+
+
+func _on_hit_box_body_entered(body: Node2D):
+	
+	if body.is_in_group("Player") and body.has_method("Death"):
+		body.Death()

@@ -37,6 +37,9 @@ point_count = 3
 [sub_resource type="Gradient" id="Gradient_61p3b"]
 colors = PackedColorArray(0.67058825, 0, 0, 1, 1, 1, 1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxeyc"]
+radius = 96.332756
+
 [node name="Exploding_enemy" type="CharacterBody2D" unique_id=1737796939]
 script = ExtResource("1_s7b2l")
 is_a_moving_enemy = false
@@ -95,6 +98,14 @@ scale_amount_curve = SubResource("Curve_s7b2l")
 color = Color(0.9416999, 0.8121339, 0.25185278, 1)
 color_initial_ramp = SubResource("Gradient_61p3b")
 
+[node name="Hit_box" type="Area2D" parent="." unique_id=2099078522]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_box" unique_id=823375756]
+shape = SubResource("CircleShape2D_dxeyc")
+debug_color = Color(0.70391214, 0.27224118, 1, 0.41960785)
+
 [connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
 [connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]
 [connection signal="body_entered" from="Explodo/expotion_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Hit_box" to="." method="_on_hit_box_body_entered"]
