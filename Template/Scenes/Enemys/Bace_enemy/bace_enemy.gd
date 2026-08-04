@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export_group("Perematers")
 @export var is_a_moving_enemy := true
+@export var Damage := 25
 
 var direction := 1
 
@@ -60,5 +61,5 @@ func _on_area_left_body_exited(_body: Node2D):
 
 func _on_hit_box_body_entered(body: Node2D):
 	
-	if body.is_in_group("Player") and body.has_method("Death"):
-		body.Death()
+	if body.is_in_group("Player") and body.has_method("Take_Damage"):
+		body.Take_Damage(Damage)

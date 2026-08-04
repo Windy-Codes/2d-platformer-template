@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export_group("Perematers")
 @export var is_a_moving_enemy := true
 @export var explotion_timer := 0.5
+@export var Damage = 50
 
 var direction := 1
 
@@ -14,6 +15,7 @@ var direction := 1
 @onready var expotion_area: Area2D = $Explodo/expotion_area
 @onready var explotion_pirticles: CPUParticles2D = $Explotion_pirticles
 @onready var hit_box: Area2D = $Hit_box
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	hit_box.monitoring = false
@@ -52,13 +54,22 @@ func Ray_collision():
 func Explotion():
 	
 	expotion_area.call_deferred("queue_free")
+
 	animated_sprite.modulate = Color.RED
+
 	await get_tree().create_timer(explotion_timer).timeout
 	animated_sprite.visible = false
 	explotion_pirticles.emitting = true
 	hit_box.monitoring = true
-	await get_tree().create_timer(0.2).timeout
+
+	await get_tree().create_timer(0.1).timeout
 	hit_box.monitoring = false
+	collision_shape.call_deferred("queue_free")
+
+
+	await get_tree().create_timer(0.57).timeout
+	call_deferred("queue_free")
+
 
 
 
@@ -79,5 +90,5 @@ func _on_area_2d_body_entered(body: Node2D):
 
 
 func _on_hit_box_body_entered(body):
-	if body.is_in_group("Player") and body.has_method("Death"):
-		body.Death()
+	if body.is_in_group("Player") and body.has_method("Take_Damage"):
+		body.Take_Damage(Damage)
