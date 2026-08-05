@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
+@export_group("Peremeters")
+@export var Can_Double_Jump := true
+@export var is_resetting_death := false
+@export var respwn_Health := 100
 @export var SPEED := 250.0
 @export var JUMP_VELOCITY := -350.0
 @export var Health := 100
-
-@export_group("Peremeters")
-@export var Can_Double_Jump := true
+@export var lifes := 3
 
 
 var is_alive := true
@@ -15,10 +17,16 @@ var can_double_jump := true
 var coyote := false
 var was_on_floor := false
 
-
+var chack_point : Marker2D
+var world_spawn_point : Vector2
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_time: Timer = $Coyote_Time
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+
+
+func _ready() -> void:
+
+	world_spawn_point = global_position
 
 
 func _physics_process(delta):
@@ -77,6 +85,10 @@ func Jump():
 
 func Movement():
 
+	# Move the character
+	if is_alive:
+		move_and_slide()
+
 	if is_Hit:
 		return
 	# Horizontal movement
@@ -87,10 +99,6 @@ func Movement():
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-
-	# Move the character
-	if is_alive:
-		move_and_slide()
 
 
 
@@ -126,12 +134,21 @@ func Take_Damage(Damage):
 	is_Hit = false
 
 
-	if Health <= 0:
-		Death()
+	if Health <= 0 and is_resetting_death == false:
+		Respwnable_Death()
+	elif Health <= 0 and is_resetting_death == true:
+		All_resetting_Death()
 
 
+func Respwnable_Death():
 
-func Death():
+	Health = respwn_Health
+	if is_instance_valid(chack_point):
+		global_position = chack_point.global_position
+	else:
+		global_position = world_spawn_point
+
+func All_resetting_Death():
 
 	get_tree().reload_current_scene.call_deferred()
 
