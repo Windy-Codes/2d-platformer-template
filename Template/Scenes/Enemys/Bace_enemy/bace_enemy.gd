@@ -36,15 +36,17 @@ func Movement():
 
 func Ray_collision():
 
-	if ray_cast_left.is_colliding():
-		var body = ray_cast_left.get_collider()
-		if body and !body.is_in_group("Player"):
-			direction = -1
+	if direction == -1:
+		if ray_cast_left.is_colliding():
+				var body = ray_cast_left.get_collider()
+				if body and !body.is_in_group("Player"):
+					direction = 1
 
-	if ray_cast_right.is_colliding():
-		var body = ray_cast_right.get_collider()
-		if body and !body.is_in_group("Player"):
-			direction = 1
+	else:
+		if ray_cast_right.is_colliding():
+				var body = ray_cast_right.get_collider()
+				if body and !body.is_in_group("Player"):
+					direction = -1
 
 
 

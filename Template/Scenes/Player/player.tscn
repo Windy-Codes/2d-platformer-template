@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dfxues88jchc2" path="res://Template/Assets/Sprites/Player/Ninja Frog/Wall Jump (32x32).png" id="4_gk6dx"]
 [ext_resource type="Texture2D" uid="uid://dlcmukb7jthty" path="res://Template/Assets/Sprites/Player/Ninja Frog/Idle (32x32).png" id="5_jhyir"]
 [ext_resource type="Texture2D" uid="uid://dcm20beq6tdqf" path="res://Template/Assets/Sprites/Player/Ninja Frog/Run (32x32).png" id="6_74mp2"]
+[ext_resource type="AudioStream" uid="uid://cry6xjryww630" path="res://Template/Assets/Audio/Player/jump.wav" id="8_2xwm8"]
+[ext_resource type="AudioStream" uid="uid://dftohgm67v80p" path="res://Template/Assets/Audio/Player/hurt.wav" id="9_7li5u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oikmp"]
 atlas = ExtResource("1_dd0ac")
@@ -344,7 +346,7 @@ script = ExtResource("1_0u5uq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=925904032]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_61p3b")
-animation = &"Hit"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580449662]
@@ -354,5 +356,13 @@ shape = SubResource("RectangleShape2D_qamto")
 [node name="Coyote_Time" type="Timer" parent="." unique_id=995429257]
 wait_time = 0.2
 one_shot = true
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=442519193]
+stream = ExtResource("8_2xwm8")
+bus = &"SFX"
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="." unique_id=112208649]
+stream = ExtResource("9_7li5u")
+bus = &"SFX"
 
 [connection signal="timeout" from="Coyote_Time" to="." method="_on_coyote_time_timeout"]

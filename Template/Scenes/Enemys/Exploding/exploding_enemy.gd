@@ -16,6 +16,8 @@ var direction := 1
 @onready var explotion_pirticles: CPUParticles2D = $Explotion_pirticles
 @onready var hit_box: Area2D = $Hit_box
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var explotion_audio: AudioStreamPlayer2D = $Explotion_audio
+
 
 func _ready() -> void:
 	hit_box.monitoring = false
@@ -61,6 +63,7 @@ func Explotion():
 	animated_sprite.visible = false
 	explotion_pirticles.emitting = true
 	hit_box.monitoring = true
+	explotion_audio.play()
 
 	await get_tree().create_timer(0.1).timeout
 	hit_box.monitoring = false

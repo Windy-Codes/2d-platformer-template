@@ -23,6 +23,11 @@ var world_spawn_point : Vector2
 @onready var coyote_time: Timer = $Coyote_Time
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+#audio players
+@onready var jump: AudioStreamPlayer2D = $Jump
+@onready var damage: AudioStreamPlayer2D = $Damage
+
+
 
 func _ready() -> void:
 
@@ -45,7 +50,7 @@ func _process(_delta: float) -> void:
 
 func Grivity(delta):
 	# Gravity
-	if !is_on_floor() and is_Hit == false:
+	if !is_on_floor():
 		velocity += get_gravity() * delta
 
 
@@ -64,17 +69,21 @@ func Jump():
 		# Normal jump
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			
+			jump.play()
 
 		# Coyote jump
 		elif coyote:
 			velocity.y = JUMP_VELOCITY
 			coyote = false
+			jump.play()
 
 		# Double jump
 		elif can_double_jump and Can_Double_Jump :
 
 			velocity.y = JUMP_VELOCITY
 			can_double_jump = false
+			jump.play()
 		
 	# Landing
 	if is_on_floor():
@@ -89,8 +98,6 @@ func Movement():
 	if is_alive:
 		move_and_slide()
 
-	if is_Hit:
-		return
 	# Horizontal movement
 	var direction := Input.get_axis("Move_left", "Move_right")
 
@@ -126,11 +133,10 @@ func Player_animations():
 func Take_Damage(Damage):
 	is_Hit = true
 	Health -= Damage
-	collision_shape.call_deferred("set_disabled", true)
+	damage.play()
 
 	animated_sprite.play("Hit")
 	await  animated_sprite.animation_finished
-	collision_shape.call_deferred("set_disabled", false)
 	is_Hit = false
 
 
