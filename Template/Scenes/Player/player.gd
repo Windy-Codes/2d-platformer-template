@@ -1,14 +1,21 @@
 extends CharacterBody2D
 
-@export_group("Peremeters")
-@export var Can_Double_Jump := true
-@export var is_resetting_death := false
-@export var respwn_Health := 100
-@export var SPEED := 250.0
-@export var JUMP_VELOCITY := -350.0
-@export var Health := 100
-@export var lifes := 3
 
+@export_category("Peremeters")
+
+@export_group("movement")
+@export var Can_Double_Jump := true  # set can the player double jump or not
+@export var SPEED := 250.0  # there speed
+@export var JUMP_VELOCITY := -350.0  # there jump power
+
+@export_group("Life_Death")
+@export var Reset_Lvl_after_Death := false # if you want the level to reset after the death set this true and if you want player to respwan to a chack point ste this false
+@export var  Reset_Lvl_when_lifes_hit_0 := false # if you want the level to reset what the lifes hit zero
+@export var respwn_Health := 100 # if the Reset_lvl_after_death is false you can set what should the player respawning health should be 
+@export var Health := 100 # the player max health
+@export var lifes := 3 # how many lifes the player have 
+
+# not important
 
 var is_alive := true
 var is_Hit := false
@@ -140,19 +147,24 @@ func Take_Damage(Damage):
 	is_Hit = false
 
 
-	if Health <= 0 and is_resetting_death == false:
-		Respwnable_Death()
-	elif Health <= 0 and is_resetting_death == true:
+	if Health <= 0 and Reset_Lvl_after_Death == false:
+		Respwnable_Death(1)
+	elif Health <= 0 and Reset_Lvl_after_Death == true:
 		All_resetting_Death()
 
 
-func Respwnable_Death():
+func Respwnable_Death(take_lifes_numbre):
+
+	if Reset_Lvl_when_lifes_hit_0 == true  and lifes <= 0:
+		All_resetting_Death()
 
 	Health = respwn_Health
 	if is_instance_valid(chack_point):
 		global_position = chack_point.global_position
 	else:
 		global_position = world_spawn_point
+	
+	lifes -= take_lifes_numbre
 
 func All_resetting_Death():
 
