@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://du4ncktijg2bp" path="res://Template/Scenes/Enemys/Bace_enemy/bace_enemy.gd" id="1_sept6"]
 [ext_resource type="Texture2D" uid="uid://c2e4rbx8hogjg" path="res://Template/Assets/Sprites/enemy's/bace_enemy/Blink (42x42).png" id="1_tdera"]
 [ext_resource type="Texture2D" uid="uid://deb6t2twjcisg" path="res://Template/Assets/Sprites/enemy's/bace_enemy/Idle.png" id="2_sept6"]
+[ext_resource type="PackedScene" uid="uid://bqe2uts0j13u1" path="res://Template/Scenes/Levels/Kill_zone/kill_zone.tscn" id="4_qaxnw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qaxnw"]
 atlas = ExtResource("1_tdera")
@@ -61,7 +62,7 @@ size = Vector2(1, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qamto"]
 size = Vector2(1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgkws"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7y662"]
 size = Vector2(30, 30)
 
 [node name="bace_Enemy" type="CharacterBody2D" unique_id=1952803521]
@@ -95,12 +96,11 @@ shape = SubResource("RectangleShape2D_61p3b")
 position = Vector2(17, 23)
 shape = SubResource("RectangleShape2D_qamto")
 
-[node name="Hit_box" type="Area2D" parent="." unique_id=1481237530]
+[node name="Kill_zone" parent="." unique_id=1918372549 instance=ExtResource("4_qaxnw")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_box" unique_id=2122748025]
-shape = SubResource("RectangleShape2D_bgkws")
-debug_color = Color(0.70391214, 0.27224118, 1, 0.41960785)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kill_zone" unique_id=1099795250]
+shape = SubResource("RectangleShape2D_7y662")
+debug_color = Color(0.74323756, 0.21429211, 0.99999994, 0.41960785)
 
 [connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
 [connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]
-[connection signal="body_entered" from="Hit_box" to="." method="_on_hit_box_body_entered"]

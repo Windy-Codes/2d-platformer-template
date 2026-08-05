@@ -75,13 +75,11 @@ shape = SubResource("RectangleShape2D_iny84")
 position = Vector2(17, 23)
 shape = SubResource("RectangleShape2D_s7b2l")
 
-[node name="Explodo" type="Node2D" parent="." unique_id=1355893731]
-position = Vector2(-36, -3)
+[node name="Explod" type="Node2D" parent="." unique_id=1355893731]
 
-[node name="expotion_area" type="Area2D" parent="Explodo" unique_id=1379885688]
-position = Vector2(36, 3)
+[node name="expotion_area" type="Area2D" parent="Explod" unique_id=1379885688]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Explodo/expotion_area" unique_id=1625465361]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explod/expotion_area" unique_id=1625465361]
 shape = SubResource("CircleShape2D_f0exm")
 
 [node name="Explotion_pirticles" type="CPUParticles2D" parent="." unique_id=855264029]
@@ -100,7 +98,6 @@ color = Color(0.9416999, 0.8121339, 0.25185278, 1)
 color_initial_ramp = SubResource("Gradient_61p3b")
 
 [node name="Hit_box" type="Area2D" parent="." unique_id=2099078522]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_box" unique_id=823375756]
 shape = SubResource("CircleShape2D_dxeyc")
@@ -113,5 +110,5 @@ bus = &"SFX"
 
 [connection signal="body_exited" from="Collision_checker/Area_left" to="." method="_on_area_left_body_exited"]
 [connection signal="body_exited" from="Collision_checker/Area_right" to="." method="_on_area_right_body_exited"]
-[connection signal="body_entered" from="Explodo/expotion_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Explod/expotion_area" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Hit_box" to="." method="_on_hit_box_body_entered"]
