@@ -39,7 +39,6 @@ func _on_body_entered(body: Node2D):
 	
     if body.is_in_group("Player"):
         Fruits_adder()
-        print(ScoreManager.Current_fruits_number)
 
 
 func _on_collected_effect_animation_finished():
