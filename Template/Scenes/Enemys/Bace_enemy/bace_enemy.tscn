@@ -53,9 +53,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0exm"]
-size = Vector2(22, 28)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61p3b"]
 size = Vector2(1, 1)
 
@@ -71,10 +68,6 @@ script = ExtResource("1_sept6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=352688414]
 sprite_frames = SubResource("SpriteFrames_61p3b")
 animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=771941583]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_f0exm")
 
 [node name="Collision_checker" type="Node2D" parent="." unique_id=552618102]
 

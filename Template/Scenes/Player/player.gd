@@ -20,15 +20,21 @@ extends CharacterBody2D
 var is_alive := true
 var is_Hit := false
 
+signal took_damage
+
 var can_double_jump := true
 var coyote := false
 var was_on_floor := false
+
+@onready var max_health := Health
 
 var chack_point : Marker2D
 var world_spawn_point : Vector2
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_time: Timer = $Coyote_Time
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var health_bar: ProgressBar = $Health_bar/Health_Bar
+
 
 #audio players
 @onready var jump: AudioStreamPlayer2D = $Jump
@@ -39,6 +45,9 @@ var world_spawn_point : Vector2
 func _ready() -> void:
 
 	world_spawn_point = global_position
+
+	health_bar.value = Health
+	health_bar.max_value = max_health
 
 
 func _physics_process(delta):
@@ -75,22 +84,23 @@ func Jump():
 
 		# Normal jump
 		if is_on_floor():
+			jump.play()
 			velocity.y = JUMP_VELOCITY
 			
-			jump.play()
+			
 
 		# Coyote jump
 		elif coyote:
+			jump.play()
 			velocity.y = JUMP_VELOCITY
 			coyote = false
-			jump.play()
 
 		# Double jump
 		elif can_double_jump and Can_Double_Jump :
-
+			jump.play()
 			velocity.y = JUMP_VELOCITY
 			can_double_jump = false
-			jump.play()
+			
 		
 	# Landing
 	if is_on_floor():
@@ -141,6 +151,7 @@ func Take_Damage(Damage):
 	is_Hit = true
 	Health -= Damage
 	damage.play()
+	took_damage.emit()
 
 	animated_sprite.play("Hit")
 	await  animated_sprite.animation_finished
@@ -153,7 +164,16 @@ func Take_Damage(Damage):
 		All_resetting_Death()
 
 
+func Health_Bar_updater():
+
+	health_bar.value = Health
+
+
+
+
 func Respwnable_Death(take_lifes_numbre):
+
+	health_bar.value = respwn_Health
 
 	if Reset_Lvl_when_lifes_hit_0 == true  and lifes <= 0:
 		All_resetting_Death()
@@ -176,3 +196,8 @@ func All_resetting_Death():
 func _on_coyote_time_timeout():
 	coyote = false
 
+
+
+func _on_took_damage():
+	
+	Health_Bar_updater()

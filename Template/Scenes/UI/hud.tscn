@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://da8v8gxpjwee2"]
+
+[ext_resource type="FontFile" uid="uid://cssyeffwawr2j" path="res://Template/Assets/Fonts/doto/Doto-Bold.ttf" id="1_dwms7"]
+[ext_resource type="Script" uid="uid://6u5kpfa2bjyi" path="res://Template/Scenes/UI/hud.gd" id="1_p7eft"]
+
+[node name="HUD" type="CanvasLayer" unique_id=440238213]
+script = ExtResource("1_p7eft")
+
+[node name="Fruit_Score_Text" type="CanvasLayer" parent="." unique_id=1540192881]
+
+[node name="Fruit_Score_Text_Shadow" type="Label" parent="Fruit_Score_Text" unique_id=1698222918]
+modulate = Color(0, 0, 0, 0.34901962)
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 57.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("1_dwms7")
+theme_override_font_sizes/font_size = 12
+text = "Fruits-"
+
+[node name="Fruit_Score_Text" type="Label" parent="Fruit_Score_Text" unique_id=1553844485]
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("1_dwms7")
+theme_override_font_sizes/font_size = 12
+text = "Fruits-"
+
+[node name="Main_Fruit_Score" type="CanvasLayer" parent="." unique_id=1972827663]
+
+[node name="Fruit_Score_Shadow" type="Label" parent="Main_Fruit_Score" unique_id=1417215791]
+modulate = Color(0, 0, 0, 0.34901962)
+offset_left = 58.0
+offset_top = 6.0
+offset_right = 87.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("1_dwms7")
+theme_override_font_sizes/font_size = 12
+text = "0"
+
+[node name="Fruit_Score" type="Label" parent="Main_Fruit_Score" unique_id=318471463]
+offset_left = 57.0
+offset_top = 5.0
+offset_right = 86.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("1_dwms7")
+theme_override_font_sizes/font_size = 12
+text = "0"

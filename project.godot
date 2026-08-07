@@ -17,6 +17,10 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://bnsq8dxpl2ltx"
 config/icon="res://icon.svg"
 
+[autoload]
+
+ScoreManager="*uid://bvalbvk7mate8"
+
 [display]
 
 window/size/viewport_width=320

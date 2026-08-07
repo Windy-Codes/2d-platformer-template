@@ -19,9 +19,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0exm"]
-size = Vector2(30, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iny84"]
 size = Vector2(1, 1)
 
@@ -53,10 +50,6 @@ is_a_moving_enemy = false
 modulate = Color(0.493657, 0.1788258, 0.72080284, 1)
 sprite_frames = SubResource("SpriteFrames_61p3b")
 animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=201814239]
-visible = false
-shape = SubResource("RectangleShape2D_f0exm")
 
 [node name="Collision_checker" type="Node2D" parent="." unique_id=91531946]
 visible = false

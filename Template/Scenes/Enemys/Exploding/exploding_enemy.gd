@@ -14,7 +14,6 @@ var direction := 1
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var expotion_area: Area2D = $Explod/expotion_area
 @onready var explotion_pirticles: CPUParticles2D = $Explotion_pirticles
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var explotion_audio: AudioStreamPlayer2D = $Explotion_audio
 @onready var hit_box: Area2D = $Hit_box
 
@@ -67,7 +66,6 @@ func Explotion():
 	explotion_audio.play()
 
 	await get_tree().create_timer(0.1).timeout
-	collision_shape.call_deferred("queue_free")
 	hit_box.monitoring = false
 
 
