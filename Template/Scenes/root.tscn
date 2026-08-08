@@ -1,7 +1,3 @@
 [gd_scene format=3 uid="uid://dveuluudgj4fk"]
 
-[ext_resource type="PackedScene" uid="uid://bw4f5kmt8lov5" path="res://Template/Scenes/Levels/Debug/debug_lvl.tscn" id="1_mesnc"]
-
 [node name="root" type="Node2D" unique_id=913863293]
-
-[node name="Debug_lvl" parent="." unique_id=1126803880 instance=ExtResource("1_mesnc")]

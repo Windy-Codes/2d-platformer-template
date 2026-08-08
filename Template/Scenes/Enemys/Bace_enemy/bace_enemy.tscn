@@ -72,10 +72,10 @@ animation = &"idle"
 [node name="Collision_checker" type="Node2D" parent="." unique_id=552618102]
 
 [node name="RayCast_left" type="RayCast2D" parent="Collision_checker" unique_id=153397818]
-target_position = Vector2(-21, 0)
+target_position = Vector2(-23, 0)
 
 [node name="RayCast_right" type="RayCast2D" parent="Collision_checker" unique_id=974282180]
-target_position = Vector2(21, 0)
+target_position = Vector2(23, 0)
 
 [node name="Area_left" type="Area2D" parent="Collision_checker" unique_id=945109356]
 

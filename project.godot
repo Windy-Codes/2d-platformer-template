@@ -17,9 +17,14 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="uid://bnsq8dxpl2ltx"
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Audio_Bus/default_bus_layout.tres"
+
 [autoload]
 
 ScoreManager="*uid://bvalbvk7mate8"
+SceneTransitions="*uid://bh0tcop77exdm"
 
 [display]
 
