@@ -329,7 +329,7 @@ tile_set = SubResource("TileSet_pby00")
 [node name="Player" parent="." unique_id=1771678370 instance=ExtResource("9_e07u4")]
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=677817795]
-zoom = Vector2(0.77, 0.77)
+zoom = Vector2(0.8, 0.8)
 limit_left = -111
 limit_top = -159
 limit_right = 143
@@ -338,12 +338,12 @@ position_smoothing_enabled = true
 position_smoothing_speed = 70.0
 
 [node name="Label" type="Label" parent="." unique_id=614139092]
-offset_left = -59.0
+offset_left = -64.0
 offset_top = -136.0
-offset_right = 89.0
+offset_right = 84.0
 offset_bottom = -24.0
 theme_override_fonts/font = ExtResource("10_i3u3b")
 text = "You can you this template how ever you want
-Thank you"
+Thank youw"
 horizontal_alignment = 1
 autowrap_mode = 2
